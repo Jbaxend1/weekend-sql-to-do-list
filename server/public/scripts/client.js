@@ -8,14 +8,27 @@ function readyNow () {
     // Event deligators
 
     // Click handlers
-    $('#submit-task').on('click', addTask);
+    $('#task-submit').on('click', addTask);
 
-    getTasks();
 }
 
 // POST function
 function addTask () {
+    console.log('in addTask');
 
+    $.ajax({
+        type: 'POST',
+        url: '/tasks',
+        data: {
+            task: $('#taskIn').val()
+        }
+    }).then(function (response) {
+        console.log(response.task);
+        getTasks();
+    }).catch(function (error) {
+        console.log('error in client POST');
+        alert('error client POST');
+    })
 }
 
 // GET  function

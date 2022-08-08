@@ -19,6 +19,14 @@ app.get('/tasks', (req, res) => {
     res.send(taskList);
 });
 
+app.post('/tasks', (req, res) => {
+    const task = req.body;
+    console.log(req.body);
+
+    taskList.push(task);
+    res.send(task);
+})
+
 app.listen(port, () => {
     console.log('listening on port', port);
 })
