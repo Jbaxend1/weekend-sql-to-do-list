@@ -1,0 +1,47 @@
+/* Color Theme Swatches in Hex */
+.Tropical-Fruit-Punch-1-hex { color: #146152; }
+.Tropical-Fruit-Punch-2-hex { color: #44803F; }
+.Tropical-Fruit-Punch-3-hex { color: #B4CF66; }
+.Tropical-Fruit-Punch-4-hex { color: #FFEC5C; }
+.Tropical-Fruit-Punch-5-hex { color: #FF5A33; }
+
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg,#146152, #FF5A33 );
+    font-family: Poppins, Helvetica, sans-serif;
+    font-size: .85rem;
+    color: #fff
+}
+
+form {
+    position: relative;
+}
+
+input {
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #fff;
+    background-color: unset;
+    outline: none;
+    font-family: "Poppins", "Helvetica", "sans-serif";
+    font-size: 1em;
+    min-width: 60vmin;
+}
+
+input:focus + label, input:not(:placeholder-shown) + label {
+    transform: translateY(-1em) scale(0.8);
+}
+
+input::placeholder {
+    color: transparent;
+}
+
+label {
+    position: absolute;
+    left: 0;
+    color:#fff;
+    transform-origin: 0 0;
+    transition: transform 0.2s ease-in-out;
+}
