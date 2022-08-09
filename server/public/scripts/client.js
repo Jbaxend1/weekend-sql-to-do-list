@@ -45,6 +45,12 @@ function getTasks () {
         $('#taskTable').append(`
             <tr>
                 <td>${task.task}</td>
+                <td>
+                    <button id="compBtn">Complete</button>
+                </td>
+                <td>
+                    <button id="delBtn">Delete</button>
+                </td>
             </tr>
         `)
         }
