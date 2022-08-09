@@ -6,9 +6,20 @@ function readyNow () {
     // console.log('in readyNow');
 
     // Event deligators
-
+    $('body').on('click', '#compBtn', completeBtn)
+    $('body').on('click', '#delBtn', deleteBtn)
     // Click handlers
     $('#task-submit').on('click', addTask);
+
+}
+
+function deleteBtn () {
+    console.log('in deleteBtn');
+}
+
+function completeBtn () {
+    console.log('in completeBtn');
+    $(this).parent().parent().css('background-color', 'green');
 
 }
 
@@ -41,18 +52,20 @@ function getTasks () {
         $('#taskTable').empty()
 
         for (let i = 0; i < response.length; i ++) {
-        let task = response[i];
-        $('#taskTable').append(`
-            <tr>
-                <td>${task.task}</td>
-                <td>
-                    <button id="compBtn">Complete</button>
-                </td>
-                <td>
-                    <button id="delBtn">Delete</button>
-                </td>
-            </tr>
-        `)
+            let task = response[i];
+            $('#taskTable').append(`
+                <tr>
+                    <td>
+                        ${task.task}
+                    </td>
+                    <td>
+                        <button id="compBtn">Complete</button>
+                    </td>
+                    <td>
+                        <button id="delBtn">Delete</button>
+                    </td>
+                </tr>
+            `);
         }
     })
 }
