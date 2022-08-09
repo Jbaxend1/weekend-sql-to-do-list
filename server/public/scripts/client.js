@@ -15,6 +15,7 @@ function readyNow () {
 
 function deleteBtn () {
     console.log('in deleteBtn');
+    $(this).parent().parent().empty()
 }
 
 function completeBtn () {
@@ -25,7 +26,7 @@ function completeBtn () {
 
 // POST function
 function addTask () {
-    console.log('in addTask');
+    // console.log('in addTask');
 
     $.ajax({
         type: 'POST',
