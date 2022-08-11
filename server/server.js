@@ -6,26 +6,10 @@ app.use(express.static('server/public'));
 
 app.use(express.urlencoded({extended: true}));
 
-let taskList = [
-    {
-     task: 'Do the Laundry'   
-    },
-    {
-     task: 'Mow the lawn'
-    }
-]
+const taskRouter = require('./routes/task.router.js');
 
-app.get('/tasks', (req, res) => {
-    res.send(taskList);
-});
+app.use('/tasks', taskRouter);
 
-app.post('/tasks', (req, res) => {
-    const task = req.body;
-    console.log(req.body);
-
-    taskList.push(task);
-    res.send(task);
-})
 
 app.listen(port, () => {
     console.log('listening on port', port);

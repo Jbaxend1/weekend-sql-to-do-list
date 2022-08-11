@@ -15,7 +15,7 @@ function readyNow () {
 
 function deleteBtn () {
     console.log('in deleteBtn');
-    $(this).parent().parent().empty()
+    $(this).parent().parent().empty();
 }
 
 function completeBtn () {
