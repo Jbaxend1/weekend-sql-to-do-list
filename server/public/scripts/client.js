@@ -11,6 +11,9 @@ function readyNow () {
     // Click handlers
     $('#task-submit').on('click', addTask);
 
+    // On page load
+    getTasks();
+
 }
 
 function deleteBtn () {
@@ -50,14 +53,17 @@ function getTasks () {
         type: 'GET',
         url: '/tasks'
     }).then(function (response) {
-        $('#taskTable').empty()
+        $('#taskTable').empty();
 
         for (let i = 0; i < response.length; i ++) {
             let task = response[i];
             $('#taskTable').append(`
                 <tr>
                     <td>
-                        ${task.task}
+                        ${task.id}
+                    </td>
+                    <td>
+                        ${task.item}
                     </td>
                     <td>
                         <button id="compBtn">Complete</button>

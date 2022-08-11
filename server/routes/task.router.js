@@ -5,7 +5,7 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     console.log('in GET / tasks');
 
-    const queryText = `SELECT * FROM "tasks";`;
+    const queryText = 'SELECT * FROM "tasks";';
 
     pool.query(queryText).then((result) => {
         console.log('SELECT success.');
