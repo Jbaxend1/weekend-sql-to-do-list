@@ -16,18 +16,18 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 
 ### READ (GET)
 
-- [ ] GET route on server (router optional)
-- [ ] Ready now function
-- [ ] Client side AJAX for GET
-- [ ] Display data on the DOM
+- [x] GET route on server (router optional)
+- [x] Ready now function
+- [x] Client side AJAX for GET
+- [x] Display data on the DOM
 
 ### CREATE (POST)
 
-- [ ] HTML form to collect data
-- [ ] Values from an input on click
-- [ ] Client side AJAX for POST
-- [ ] POST route on server
-- [ ] INSERT INTO the database
+- [x] HTML form to collect data
+- [x] Values from an input on click
+- [x] Client side AJAX for POST
+- [x] POST route on server
+- [x] INSERT INTO the database
 - [ ] Refresh data on success
 
 ### DELETE

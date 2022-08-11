@@ -38,10 +38,10 @@ function addTask () {
             task: $('#taskIn').val()
         }
     }).then(function (response) {
-        console.log(response.task);
+        console.log(response.item);
         getTasks();
     }).catch(function (error) {
-        console.log('error in client POST');
+        console.log('error in client POST', error);
         alert('error client POST');
     })
 }

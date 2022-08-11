@@ -16,13 +16,22 @@ router.get('/', (req, res) => {
     })
 });
 
-// router.post('/tasks', (req, res) => {
-//     const task = req.body;
-//     console.log(req.body);
+router.post('/', (req, res) => {
+    const taskToAdd = req.body;
+    const queryText = `INSERT INTO "tasks" ("item") VALUES ($1);`
 
-//     taskList.push(task);
-//     res.send(task);
-// })
+    // console.log(req.body);
+
+    pool.query(queryText, [taskToAdd.task])
+        .then((results) => {
+            console.log(results);
+            res.send(results);
+        })
+        .catch((error) => {
+            console.log('Error in POST /tasks', error);
+            res.sendStatus(500);
+        });
+})
 
 
 
