@@ -6,7 +6,7 @@
 .Tropical-Fruit-Punch-5-hex { color: #FF5A33; }
 
 body {
-    margin: 0;
+    margin: 12px;
     height: 100vh;
     width: 100vw;
     background: linear-gradient(135deg,#146152, #FF5A33 );

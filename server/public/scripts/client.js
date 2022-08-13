@@ -2,7 +2,7 @@
 
 $(readyNow);
 
-function readyNow () {
+function readyNow() {
     // console.log('in readyNow');
 
     // Event deligators
@@ -10,25 +10,37 @@ function readyNow () {
     $('body').on('click', '#delBtn', deleteBtn)
     // Click handlers
     $('#task-submit').on('click', addTask);
+    $('#delBtn').on('click', deleteBtn);
 
     // On page load
     getTasks();
 
 }
 
-function deleteBtn () {
-    console.log('in deleteBtn');
-    $(this).parent().parent().empty();
+function deleteBtn() {
+    
+    const taskId = $(this).data('id');
+    console.log('in deleteBtn', taskId);
+
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${taskId}`
+    }).then(function (response) {
+        getTasks();
+    }).catch(function (error) {
+        console.log(error);
+        alert('Something went wrong DELETE client');
+    });
 }
 
-function completeBtn () {
+function completeBtn() {
     console.log('in completeBtn');
     $(this).parent().parent().css('background-color', 'green');
 
 }
 
 // POST function
-function addTask () {
+function addTask() {
     // console.log('in addTask');
 
     $.ajax({
@@ -47,7 +59,7 @@ function addTask () {
 }
 
 // GET  function
-function getTasks () {
+function getTasks() {
 
     $.ajax({
         type: 'GET',
@@ -55,7 +67,7 @@ function getTasks () {
     }).then(function (response) {
         $('#taskTable').empty();
 
-        for (let i = 0; i < response.length; i ++) {
+        for (let i = 0; i < response.length; i++) {
             let task = response[i];
             $('#taskTable').append(`
                 <tr>
@@ -69,7 +81,7 @@ function getTasks () {
                         <button id="compBtn">Complete</button>
                     </td>
                     <td>
-                        <button id="delBtn">Delete</button>
+                        <button id="delBtn" data-id="${task.id}">Delete</button>
                     </td>
                 </tr>
             `);
