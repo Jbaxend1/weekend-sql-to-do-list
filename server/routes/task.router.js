@@ -14,15 +14,15 @@ router.get('/', (req, res) => {
         console.log('Error in GET /tasks', error);
         res.sendStatus(500);
     })
-});
+})
 
 router.post('/', (req, res) => {
     const taskToAdd = req.body;
-    const queryText = `INSERT INTO "tasks" ("item") VALUES ($1);`
+    const queryText = `INSERT INTO "tasks" ("item", "completed") VALUES ($1, $2);`
 
     // console.log(req.body);
 
-    pool.query(queryText, [taskToAdd.task])
+    pool.query(queryText, [taskToAdd.task, taskToAdd.completed])
         .then((results) => {
             console.log(results);
             res.send(results);
@@ -42,6 +42,21 @@ router.delete('/:id', (req, res) => {
     }).catch((error) => {
         res.sendStatus(500);
     })
+})
+
+router.put('/:id', (req, res) => {
+    const taskId = req.params.id;
+
+    console.log(taskId);
+
+    const queryText = `UPDATE "tasks" SET "completed" = 'TRUE' WHERE "id" = $1;`;
+
+    pool.query(queryText, [taskId])
+        .then((results) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            res.sendStatus(500);
+        });
 })
 
 

@@ -11,14 +11,16 @@ function readyNow() {
     // Click handlers
     $('#task-submit').on('click', addTask);
     $('#delBtn').on('click', deleteBtn);
+    $('#compBtn').on('click', completeBtn);
 
     // On page load
     getTasks();
 
 }
 
+// DELETE
 function deleteBtn() {
-    
+
     const taskId = $(this).data('id');
     console.log('in deleteBtn', taskId);
 
@@ -33,10 +35,27 @@ function deleteBtn() {
     });
 }
 
+// PUT
 function completeBtn() {
+    compGreen();
     console.log('in completeBtn');
-    $(this).parent().parent().css('background-color', 'green');
+    const taskId = $(this).data('id');
 
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${taskId}`,
+        data: { task: 'New task', completed: 'TRUE' }
+    }).then(function (response) {
+        getTasks();
+    }).catch(function (error) {
+        console.log(error);
+        alert('Something wrong in client PUT');
+    });
+
+
+}
+
+function compGreen() {
 }
 
 // POST function
@@ -47,10 +66,11 @@ function addTask() {
         type: 'POST',
         url: '/tasks',
         data: {
-            task: $('#taskIn').val()
+            task: $('#taskIn').val(),
+            completed: 'FALSE'
         }
     }).then(function (response) {
-        console.log(response.item);
+        console.log(response);
         getTasks();
     }).catch(function (error) {
         console.log('error in client POST', error);
@@ -69,6 +89,7 @@ function getTasks() {
 
         for (let i = 0; i < response.length; i++) {
             let task = response[i];
+
             $('#taskTable').append(`
                 <tr>
                     <td>
@@ -78,13 +99,22 @@ function getTasks() {
                         ${task.item}
                     </td>
                     <td>
-                        <button id="compBtn">Complete</button>
+                        ${task.completed}
+                    </td>
+                    <td>
+                        <button id="compBtn" data-id="${task.id}">Complete</button>
                     </td>
                     <td>
                         <button id="delBtn" data-id="${task.id}">Delete</button>
                     </td>
                 </tr>
-            `);
+                `);
         }
-    })
+        
+        emptyInput();
+    });
+}
+
+function emptyInput() {
+    $('#taskIn').val('');
 }
