@@ -2,12 +2,13 @@
 
 $(readyNow);
 
+// Ready
 function readyNow() {
     // console.log('in readyNow');
-
     // Event deligators
-    $('body').on('click', '#compBtn', completeBtn)
-    $('body').on('click', '#delBtn', deleteBtn)
+    $('body').on('click', '#compBtn', completeBtn);
+    $('body').on('click', '#delBtn', deleteBtn);
+
     // Click handlers
     $('#task-submit').on('click', addTask);
     $('#delBtn').on('click', deleteBtn);
@@ -15,7 +16,6 @@ function readyNow() {
 
     // On page load
     getTasks();
-
 }
 
 // DELETE
@@ -37,8 +37,7 @@ function deleteBtn() {
 
 // PUT
 function completeBtn() {
-    compGreen();
-    console.log('in completeBtn');
+    // console.log('in completeBtn');
     const taskId = $(this).data('id');
 
     $.ajax({
@@ -51,17 +50,11 @@ function completeBtn() {
         console.log(error);
         alert('Something wrong in client PUT');
     });
-
-
 }
 
-function compGreen() {
-}
-
-// POST function
+// POST
 function addTask() {
     // console.log('in addTask');
-
     $.ajax({
         type: 'POST',
         url: '/tasks',
@@ -78,7 +71,7 @@ function addTask() {
     })
 }
 
-// GET  function
+// GET
 function getTasks() {
 
     $.ajax({
@@ -86,31 +79,27 @@ function getTasks() {
         url: '/tasks'
     }).then(function (response) {
 
-        
-
         $('#taskTable').empty();
 
         for (let i = 0; i < response.length; i++) {
             let task = response[i];
 
             // console.log(task.completed);
-
+            let comp = 'Unfinished';
             let taskClass = 'uncomplete';
 
             if (task.completed === true) {
                 taskClass = 'complete';
-            }
+                comp = 'Done!'
+            };
 
             $('#taskTable').append(`
                 <tr class="${taskClass}">
                     <td>
-                        ${task.id}
-                    </td>
-                    <td>
                         ${task.item}
                     </td>
                     <td>
-                        ${task.completed}
+                        ${comp}
                     </td>
                     <td>
                         <button id="compBtn"  class="${taskClass}" data-id="${task.id}">Complete</button>
@@ -121,11 +110,7 @@ function getTasks() {
                 </tr>
                 `);
         }
-        
-        emptyInput();
-    });
-}
 
-function emptyInput() {
-    $('#taskIn').val('');
+        $('#taskIn').val('');
+    });
 }
