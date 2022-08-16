@@ -85,13 +85,24 @@ function getTasks() {
         type: 'GET',
         url: '/tasks'
     }).then(function (response) {
+
+        
+
         $('#taskTable').empty();
 
         for (let i = 0; i < response.length; i++) {
             let task = response[i];
 
+            // console.log(task.completed);
+
+            let taskClass = 'uncomplete';
+
+            if (task.completed === true) {
+                taskClass = 'complete';
+            }
+
             $('#taskTable').append(`
-                <tr>
+                <tr class="${taskClass}">
                     <td>
                         ${task.id}
                     </td>
@@ -102,7 +113,7 @@ function getTasks() {
                         ${task.completed}
                     </td>
                     <td>
-                        <button id="compBtn" data-id="${task.id}">Complete</button>
+                        <button id="compBtn"  class="${taskClass}" data-id="${task.id}">Complete</button>
                     </td>
                     <td>
                         <button id="delBtn" data-id="${task.id}">Delete</button>

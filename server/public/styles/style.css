@@ -5,6 +5,15 @@
 .Tropical-Fruit-Punch-4-hex { color: #FFEC5C; }
 .Tropical-Fruit-Punch-5-hex { color: #FF5A33; }
 
+.complete {
+    color: #146152;
+    background-color:#B4CF66;
+}
+
+.uncomplete {
+    background-color: #FF5A33;
+}
+
 body {
     margin: 12px;
     height: 100vh;
