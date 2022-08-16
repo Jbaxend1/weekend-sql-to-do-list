@@ -47,7 +47,7 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
     const taskId = req.params.id;
 
-    console.log(taskId);
+    // console.log(taskId);
 
     const queryText = `UPDATE "tasks" SET "completed" = 'TRUE' WHERE "id" = $1;`;
 
